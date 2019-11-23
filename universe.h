@@ -6,13 +6,13 @@
 struct Universe {
     struct Particle* particles;
     size_t size;
-    size_t capacity;
-    size_t permanent_index;
     int screen_width;
     int screen_height;
 };
 
 struct Universe* create_universe(size_t num_particles, int width, int height);
+
+void free_universe(struct Universe* universe);
 
 void randomise_universe(struct Universe *universe);
 

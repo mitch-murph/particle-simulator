@@ -19,10 +19,18 @@ struct Universe* create_universe(size_t num_particles, int width, int height){
         new_universe->particles[i].vel = MALLOC(struct Point);
     }
     new_universe->size = num_particles;
-    new_universe->capacity = num_particles;
     new_universe->screen_width = width;
     new_universe->screen_height = height;
     return new_universe;
+}
+
+void free_universe(struct Universe *universe){
+    for (int i = 0; i < universe->size; i++){
+        free(universe->particles[i].point);
+        free(universe->particles[i].vel);
+    }
+    free(universe->particles);
+    free(universe);
 }
 
 void randomise_universe_rings(struct Universe *universe){
@@ -41,7 +49,7 @@ void randomise_universe_rings(struct Universe *universe){
             universe->particles[i].vel->x = (y_pos-400)/21;
             universe->particles[i].vel->y = -(x_pos-400)/21;
         }
-        universe->particles[i].mass = 1;
+        universe->particles[i].mass = 0.5;
     }
 }
 
@@ -102,13 +110,7 @@ void update_universe(struct Universe *universe){
 void insert_particle(struct Universe *universe, int x, int y, double v_x, double v_y, int size){
     int i = universe->size;
     universe->size++;
-    struct Particle *old_particles = universe->particles;
-    struct Particle *new_particles = MALLOC_N(struct Particle, universe->size);
-    for (int j = 0; j < universe->size; j++){
-        new_particles[j] = universe->particles[j];
-    }
-    free(old_particles);
-    universe->particles = new_particles;
+    universe->particles = ((struct Particle*)realloc(universe->particles, sizeof(struct Particle)*universe->size));
     universe->particles[i].point = MALLOC(struct Point);
     universe->particles[i].vel = MALLOC(struct Point);
     universe->particles[i].point->x = x;

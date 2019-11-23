@@ -8,11 +8,11 @@
 #define SCREEN_HEIGHT 800
 
 int main(){
-    struct Universe* universe = create_universe(4, SCREEN_WIDTH, SCREEN_HEIGHT);
+    struct Universe* universe = create_universe(0, SCREEN_WIDTH, SCREEN_HEIGHT);
     // randomise_universe(universe);
     // randomise_universe_rings(universe);
     // randomise_universe_2stars(universe);
-    randomise_universe_4stars(universe);
+    // randomise_universe_4stars(universe);
 
     InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Particle Simulator");
     SetTargetFPS(30);
@@ -45,5 +45,6 @@ int main(){
         EndDrawing();
     }
     CloseWindow();
+    free_universe(universe);
     return 0;
 }

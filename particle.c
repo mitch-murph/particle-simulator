@@ -50,6 +50,8 @@ void compute(struct Particle *list, size_t *size){
 
                 apply_momentum(&list[i], list[j]);
 
+                free(list[j].point);
+                free(list[j].vel);
                 j--;                                        // Adjust the shift to
                 shift++;                                    // overwrite merged particles
                 (*size)--;                                  // and reduce to the new size

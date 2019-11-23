@@ -7,7 +7,7 @@ Particle Simulator written in C using raylib.
 ## A stable 4 star orbiting scenario 
 <img src="vid/4stars.gif" width="400">
 
-## A stable 2 star orbiting scenario being interrupt
+## A stable 2 star orbiting scenario being interrupted
 <img src="vid/2stars.gif" width="400">
 
 ## An interesting result of opposing orbiting rings 
