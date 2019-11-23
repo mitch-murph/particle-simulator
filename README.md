@@ -1,2 +1,2 @@
 # Particle Simulator
-![](vid/random.gif |width =200)
+![](vid/random.gif | width=200)
