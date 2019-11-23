@@ -26,66 +26,49 @@ struct Universe* create_universe(size_t num_particles, int width, int height){
 }
 
 void randomise_universe_rings(struct Universe *universe){
-    srand(time(NULL));
-    universe->particles[0].point->x = 400;
-    universe->particles[0].point->y = 400;
-    universe->particles[0].vel->x = 0;
-    universe->particles[0].vel->y = 0;
-    universe->particles[0].mass = 5;
-    for (int i = 1; i < universe->size; i++){
-        // double x_pos = rand()%(SCREEN_WIDTH - 400) + 200;
-        // double y_pos = rand()%(SCREEN_HEIGHT - 400) + 200;
-        // double angle = (rand()%(47))/10+1.5707;
+    for (int i = 0; i < universe->size; i++){
         double angle = (double)(rand()%628318598)/100000000;
-        double ra = 400;//(rand()%(int)(sqrt((SCREEN_HEIGHT*SCREEN_HEIGHT)/8)*10000))/10000; // (rand()%3+2)*300/3;
+        double ra = (rand()%3+2)*50;
         double x_pos = ra*cos(angle) + 400;
         double y_pos = ra*sin(angle) + 400;
-        printf("<%f, %f> %d\n", x_pos, y_pos, i);
         universe->particles[i].point->x = x_pos;
         universe->particles[i].point->y = y_pos;
         if (((int)ra)%200 == 0){
-            universe->particles[i].vel->x = -(y_pos-400)/400;
-            universe->particles[i].vel->y = (x_pos-400)/400;
+            universe->particles[i].vel->x = -(y_pos-400)/21;
+            universe->particles[i].vel->y = (x_pos-400)/21;
         }
         else {
-            universe->particles[i].vel->x = (y_pos-400)/400;
-            universe->particles[i].vel->y = -(x_pos-400)/400;
+            universe->particles[i].vel->x = (y_pos-400)/21;
+            universe->particles[i].vel->y = -(x_pos-400)/21;
         }
-        universe->particles[i].mass = 5;
+        universe->particles[i].mass = 1;
     }
 }
 
-void randomise_universe_4star(struct Universe *universe){
-    srand(time(NULL));
-    universe->particles[0].point->x = 0;
+void randomise_universe_4stars(struct Universe *universe){
+    universe->particles[0].point->x = 100;
     universe->particles[0].point->y = 400;
     universe->particles[0].vel->x = 0;
     universe->particles[0].vel->y = -4;
-    universe->particles[0].mass = 20;
+    universe->particles[0].mass = 10;
     universe->particles[1].point->x = 400;
-    universe->particles[1].point->y = 800;
+    universe->particles[1].point->y = 700;
     universe->particles[1].vel->x = -4;
     universe->particles[1].vel->y = 0;
-    universe->particles[1].mass = 20;
-    universe->particles[2].point->x = 800;
+    universe->particles[1].mass = 10;
+    universe->particles[2].point->x = 700;
     universe->particles[2].point->y = 400;
     universe->particles[2].vel->x = 0;
     universe->particles[2].vel->y = 4;
-    universe->particles[2].mass = 20;
+    universe->particles[2].mass = 10;
     universe->particles[3].point->x = 400;
-    universe->particles[3].point->y = 0;
+    universe->particles[3].point->y = 100;
     universe->particles[3].vel->x = 4;
     universe->particles[3].vel->y = 0;
-    universe->particles[3].mass = 20;
-    universe->particles[4].point->x = 400;
-    universe->particles[4].point->y = 400;
-    universe->particles[4].vel->x = 0;
-    universe->particles[4].vel->y = 0;
-    universe->particles[4].mass = 50;
+    universe->particles[3].mass = 10;
 }
 
-void randomise_universe_2star(struct Universe *universe){
-    srand(time(NULL));
+void randomise_universe_2stars(struct Universe *universe){
     universe->particles[0].point->x = 250;
     universe->particles[0].point->y = 400;
     universe->particles[0].vel->x = 0;
@@ -101,8 +84,8 @@ void randomise_universe_2star(struct Universe *universe){
 void randomise_universe(struct Universe *universe){
     srand(time(NULL));
     for (int i = 0; i < universe->size; i++){
-        double x_pos = rand()%(SCREEN_WIDTH - 300) + 150;
-        double y_pos = rand()%(SCREEN_HEIGHT - 300) + 150;
+        double x_pos = rand()%(SCREEN_WIDTH - 400) + 200;
+        double y_pos = rand()%(SCREEN_HEIGHT - 400) + 200;
         universe->particles[i].point->x = x_pos;
         universe->particles[i].point->y = y_pos;
         universe->particles[i].vel->x = 0;
