@@ -2,7 +2,7 @@
 Particle Simulator written in C using raylib.
 
 ## Allows for inserting new particles through drawing
-<img src="vid/drawing.gif" width="800">
+<img src="vid/drawing.gif" width="650">
 
 ## A stable 4 star orbiting scenario 
 <img src="vid/4stars.gif" width="400">
