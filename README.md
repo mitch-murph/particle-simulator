@@ -1,2 +1,5 @@
 # Particle Simulator
-![](vid/random.gif | width=200)
+![](vid/random.gif)
+
+<img src="vid/random.gif" width="48">
+
